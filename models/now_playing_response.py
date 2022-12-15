@@ -8,7 +8,7 @@
 #
 # and then, to convert JSON from a string, do
 #
-#     result = Welcomefromdict(json.loads(json_string))
+#     result = Moviesfromdict(json.loads(json_string))
 
 from dataclasses import dataclass
 from datetime import datetime
@@ -20,7 +20,10 @@ import dateutil.parser
 T = TypeVar("T")
 EnumT = TypeVar("EnumT", bound=Enum)
 
-
+# def __init__(self, name, age):
+#   self.name = name
+#   self.age = age
+  
 def from_datetime(x: Any) -> datetime:
     return dateutil.parser.parse(x)
 
@@ -144,7 +147,7 @@ class Result:
 
 
 @dataclass
-class Welcome:
+class Movies:
     dates: Dates
     page: int
     results: List[Result]
@@ -152,14 +155,14 @@ class Welcome:
     totalresults: int
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Welcome':
+    def from_dict(obj: Any) -> 'Movies':
         assert isinstance(obj, dict)
         dates = Dates.from_dict(obj.get("dates"))
         page = from_int(obj.get("page"))
         results = from_list(Result.from_dict, obj.get("results"))
         totalpages = from_int(obj.get("total_pages"))
         totalresults = from_int(obj.get("total_results"))
-        return Welcome(dates, page, results, totalpages, totalresults)
+        return Movies(dates, page, results, totalpages, totalresults)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -171,9 +174,9 @@ class Welcome:
         return result
 
 
-def Welcomefromdict(s: Any) -> Welcome:
-    return Welcome.from_dict(s)
+def Moviesfromdict(s: Any) -> Movies:
+    return Movies.from_dict(s)
 
 
-def Welcometodict(x: Welcome) -> Any:
-    return to_class(Welcome, x)
+def Moviestodict(x: Movies) -> Any:
+    return to_class(Movies, x)
