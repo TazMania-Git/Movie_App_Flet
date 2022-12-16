@@ -3,7 +3,7 @@ import json
 import sys
 
 ### FUNCIONA #####
-sys.path.append(r'F:\Flet Flutter Apps\App\Movie_App_Flet\models')
+sys.path.append(r'F:\Flet Flutter Apps\App\Movie_App_Flet\models') ###cambiar el directorio es alta paja
 import now_playing_response as np
 ##################r
 
