@@ -20,6 +20,8 @@ import dateutil.parser
 T = TypeVar("T")
 EnumT = TypeVar("EnumT", bound=Enum)
 
+
+
 # def __init__(self, name, age):
 #   self.name = name
 #   self.age = age
@@ -107,6 +109,7 @@ class Result:
     video: bool
     voteaverage: float
     votecount: int
+    
 
     @staticmethod
     def from_dict(obj: Any) -> 'Result':
