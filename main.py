@@ -12,9 +12,9 @@ sys.path.insert(0, r'helpers')
 
 class App(UserControl):
     def build(build):
-
         return Column(controls=[
-            ])
+            # reel.images
+        ])
 
         # ACA MANDO EL RAIL PARA EL COSTADO IZQ
         # return Column(height=500,width=100,controls=[nr.rail])
@@ -29,7 +29,7 @@ def main(page: Page):
     app = App()
     page.add(
         app,
-        appmenu.appbar
+        appmenu.appbar,
         # Row(
         #     [
         #         nr.rail,
