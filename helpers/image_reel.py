@@ -1,49 +1,55 @@
-import providers.movies_provider as movie
 from flet import *
 import sys
-sys.path.insert(0, r'providers')
+sys.path.insert(0, f'')
+print(sys.path)
+# import providers.movies_provider as movie
+from providers import movies_provider as movie
 
 
 def fullPosterImag(posterPath):
     if (posterPath != None):
-        return 'https://image.tmdb.org/t/p/w500${posterPath}'
+        return f'https://image.tmdb.org/t/p/w500{posterPath}'
     return 'https://i.stack.imgur.com/GNhxO.png'
 
-
+base_url = 'https://image.tmdb.org/t/p/w500$'
 allmovie = Row(scroll=True)
 s = []
+movies_response = movie.Movie_provider().get_all_now_playing()
 
-for x in s:
+for x in movies_response.results:
     allmovie.controls.append(
         Card(
+            
             elevation=30,
             content=Container(
-                width=160,
+                width=200,
                 height=330,
                 padding=10,
-                border=border.symmetric(
-                    vertical=border.BorderSide(5, "orange")),
+                # border=border.symmetric(
+                #     vertical=border.BorderSide(10, "orange")),
                 border_radius=border_radius.all(30),
-                bgcolor="white",
+                # bgcolor="white",
                 content=Column([
                     Image(
-                        src=base_url+x["poster_path"],
+                        src=fullPosterImag(x.posterpath),
+                        # src=base_url+x["poster_path"],
                         height=200,
                         border_radius=border_radius.all(30),
-                        fit="contain"
+                        fit="contain",
+                        expand=True
                     ),
-                    Text(x['original_title'],
+                    Text(x.originaltitle,
+                        color=colors.WHITE,
                          size=18,
                          weight="bold")
-
-                ], alignment="center")
+                ], alignment=MainAxisAlignment.CENTER)
             )
         )
     )
 
 
 mysection1 = Column([
-    Text("Trending", size=20, weight="bold"),
+    Text("Now Playing", size=20, weight="bold"),
 
     allmovie,
 

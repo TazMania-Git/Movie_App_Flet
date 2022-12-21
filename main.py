@@ -13,7 +13,6 @@ sys.path.insert(0, r'helpers')
 class App(UserControl):
     def build(build):
         return Column(controls=[
-            # reel.images
         ])
 
         # ACA MANDO EL RAIL PARA EL COSTADO IZQ
@@ -25,11 +24,12 @@ def main(page: Page):
     page.scroll = True
     page.theme_mode = ThemeMode.DARK
     page.title = "Movies App"
-    page.update()
     app = App()
     page.add(
         app,
         appmenu.appbar,
+        reel.mysection1
+        
         # Row(
         #     [
         #         nr.rail,
@@ -40,6 +40,7 @@ def main(page: Page):
         #     expand=True,
         # )
     )
+    page.update()
 
 
 if __name__ == "__main__":
